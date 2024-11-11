@@ -1,0 +1,21 @@
+name: build script for convert.c		
+
+on:							
+  push:
+    branches: [ "main" ]			
+
+jobs:
+  build:						
+    runs-on: ubuntu-latest			
+    steps:
+      - uses: actions/checkout@v4		
+
+      - name: build convert			
+        run: gcc -o convert convert.c		
+
+      - name: upload binary			
+        uses: actions/upload-artifact@v4	
+        with:
+          name: convert results	
+          path: ./convert
+
