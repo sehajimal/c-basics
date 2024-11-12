@@ -28,8 +28,8 @@ jobs:
           gcc -o ctest --coverage convert.c convert2.c
           ./ctest
           ./test_script > test_results.txt
-          gcov convert-convert.c
-          gcov convert-convert2.c
+          gcov convert.c
+          gcov convert2.c
       - name: Upload testresults and show the coverage
         uses: actions/upload-artifact@v4
         with:
