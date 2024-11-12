@@ -4,6 +4,7 @@
  * Has a conversionProcessor which uses other recursive functions in order to handle all the tasks (convert the num)
  **/
 
+#include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
@@ -83,7 +84,7 @@ void conversionRecursivley(long usersNumber, int newBase)
 {
     if (usersNumber < 0) 
     {
-        puts('-');
+        putchar('-');
         usersNumber = -usersNumber;                               //done to process the final number 
     }
 
@@ -93,7 +94,6 @@ void conversionRecursivley(long usersNumber, int newBase)
     if (quotient != 0)                                          //waits until quotient is zero
     {
         conversionRecursivley(quotient, newBase); 
-        puts('\n');
     }
     
     if (remainder < 10)                                     //either will be number or alphabet
