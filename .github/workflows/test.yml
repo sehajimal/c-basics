@@ -27,6 +27,7 @@ jobs:
         run: |
           gcc -o convert --coverage convert.c convert2.c
           ./convert
+          chmod +x ./test_script
           ./test_script > test_results.txt
           gcov convert-convert.c
           gcov convert-convert2.c
