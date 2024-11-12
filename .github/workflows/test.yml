@@ -10,9 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install Dependencies
-        run: sudo apt-get install gcc-multilib
-      - name: Build convert release version
+      - name: Build convert
         run: gcc -o convert convert.c convert2.c  
       - name: Upload convert binary
         uses: actions/upload-artifact@v4
@@ -25,17 +23,14 @@ jobs:
     needs: build
     steps:
       - uses: actions/checkout@v4
-      - name: Install Dependencies
-        run: sudo apt-get install gcc-multilib
-      - name: Compile test version with coverage and run tests
+      - name: Compile and run testresults
         run: |
-          gcc -o convert --coverage convert.c convert2.c  # Compile with coverage
+          gcc -o convert --coverage convert.c convert2.c
           ./convert
-          chmod +x ./test_script
           ./test_script > test_results.txt
           gcov convert-convert.c
           gcov convert-convert2.c
-      - name: Upload test results and coverage report
+      - name: Upload testresults and show the coverage
         uses: actions/upload-artifact@v4
         with:
           name: test_artifacts
