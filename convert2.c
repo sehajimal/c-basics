@@ -1,20 +1,83 @@
 /* Sehaj Ajimal, 400511220, 2024
- * second .c file which is used to make the code more modular and contains all of the functions outside of main
- * includes the help function which goes beyond the usage string to explain the function
+ * Second .c file which is used to make the code more modular and contains all of the functions outside of main
+ * Includes the help function which goes beyond the usage string to explain the function
+ * Has a conversionProcessor which uses other functions in order to handle all the tasks (convert the num)
  * 
  **/
 
-
-#include <stdbool.h>
-#include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdbool.h>
 #include "convert.h"
 
+//This function is in charge of processing the tasks of converting the usersnumber
+void conversionProcessor(int newBase, int helpFlag, long start, long finish) 
+{
+    if (helpFlag)                                                               //outputs help message
+    {
+        help();
+    } 
+    
+    else if (finish > start)                                                    
+    {  
+        for (long usersNumber = start; usersNumber <= finish; usersNumber++) 
+        {
+            numberConverter(usersNumber, newBase);
+        }
+    } 
+    
+    else                                                                    //accepts standard input until EOF
+    {  
+        long usersNumber;
 
+        while (true) 
+        {
+            int value = scanf("%ld", &usersNumber);
+            if (value == EOF) 
+            {
+                break;  
+            } 
+
+            else if (value != 1)                                           //Non-long-int token encountered.
+            {
+                fprintf(stderr, "Error: Non-long-int token encountered.\n");
+                exit(1);
+            }
+
+            convert_number(usersNumber, newBase);
+        }
+    }
+}
+
+//Function used to convert the long int to a new base
+void numberConverter(long usersNumber, int newBase) 
+{
+    if (usersNumber < 0) 
+    {
+        printf('-');
+        usersNumber = -usersNumber;                               //done to process the final number 
+    }
+    conversionRecursivley(usersNumber, newBase);
+    printf('\n');
+}
+
+//process the number recursively and send the new representation to standard output one character at a time.
+void conversionRecursivley(long usersNumber, int newBase) 
+{
+    int remainder = usersNumber % newBase; 
+    int quotient = usersNumber / newBase;  
+
+    if (quotient != 0) 
+    {
+        conversionRecursivley(quotient, newBase); 
+    }
+    
+    printf(remainder < 10 ? '0' + remainder : 'A' + (remainder - 10));  
+}
 
 //function for when user does help flag
-void help() {
+void help() 
+{
     printf("Usage: convert [-b BASE] [-r START FINISH]\n");
     printf("        1 < BASE < 37\n");
     printf("        START and FINISH are long integers\n\n");
