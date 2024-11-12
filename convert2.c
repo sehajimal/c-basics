@@ -94,6 +94,7 @@ void conversionRecursivley(long usersNumber, int newBase)
     if (quotient != 0)                                          //waits until quotient is zero
     {
         conversionRecursivley(quotient, newBase); 
+        putchar("\n");
     }
     
     if (remainder < 10)                                     //either will be number or alphabet
