@@ -11,7 +11,7 @@
 
 /* Main
  *
- * Takes care of initialization of certain variables (no base specified, so base = 16)
+ * Takes care of initialization of certain va riables (no base specified, so base = 16)
  * Calls necessary functions which are in the convert2.c file (Processes converting the number)(interpreting the command line options and arguments)
  * 
 **/
