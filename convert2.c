@@ -18,6 +18,7 @@ void interpretParamaters(int argc, char *argv[], int *newBase, long *start, long
         if (!(*newBase > 1 || *newBase < 37))                              //values do not meet specification so call usage
         {
             usage();
+            exit(1);
         }
 
         if (strcmp(argv[i], "-b") == 0 && argc > i + 1)              //converting to int using atoi and making sure that a value is given with -b (base)
@@ -43,6 +44,7 @@ void interpretParamaters(int argc, char *argv[], int *newBase, long *start, long
         else 
         {
             usage();
+            exit(1);
         }
     }
 }
@@ -74,6 +76,7 @@ void conversionProcessor(int newBase, long start, long finish)
             else if (value != 1)                                           //Non-long-int token encountered.
             {
                 printf("Error: Non-long-int token encountered.\n");
+                exit(1);
             }
 
             conversionRecursivley(i, newBase);
