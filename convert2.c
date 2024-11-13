@@ -55,6 +55,8 @@ void conversionProcessor(int newBase, long start, long finish)
         for (long i = start; i <= finish; i++)              //loop iterates for all the values in the range of start and finish
         {
             conversionRecursivley(i, newBase);
+            putchar('\n');
+
         }
     }
     
@@ -75,6 +77,8 @@ void conversionProcessor(int newBase, long start, long finish)
             }
 
             conversionRecursivley(i, newBase);
+            putchar('\n');
+
         }
     }
 }
@@ -94,7 +98,6 @@ void conversionRecursivley(long usersNumber, int newBase)
     if (quotient != 0)                                          //waits until quotient is zero
     {
         conversionRecursivley(quotient, newBase); 
-        putchar('\n');
     }
     
     if (remainder < 10)                                     //either will be number or alphabet
